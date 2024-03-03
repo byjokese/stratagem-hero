@@ -10,7 +10,7 @@ export type GamePhase = 'start' | 'game' | 'end';
   providedIn: 'root',
 })
 export class StratagemHeroService {
-  private readonly INITIAL_TIME_TO_COMPLETE = 20000;
+  private readonly INITIAL_TIME_TO_COMPLETE = 15000;
   private readonly ACTION_DELAY = 500;
   private readonly BASE_NUMBER_OF_STRATAGEMS = 7;
 
@@ -118,7 +118,7 @@ export class StratagemHeroService {
     /* --------------------------- Stratagem Complete? -------------------------- */
     if (currentKeyQueueSize === 1 && keySuccess) {
       this.gameScoreSignal.update((score) => score + 10);
-      // this.timer.update((time) => time + 1000);
+      this.resetTimer(this.timer() + 1500);
       this.nextStratagem();
     }
   }
@@ -154,10 +154,10 @@ export class StratagemHeroService {
     }
   }
 
-  private resetTimer() {
+  private resetTimer(time?: number) {
     // Start the timer
-    this.timer.set(this.currentTimeToComplete());
     clearInterval(this.timerInterval);
+    this.timer.set(time ?? this.currentTimeToComplete());
     // Every 10ms decrement the timer (HTML5 ensures 4ms accuracy for setTimeout, exceot for nested that can be 10ms)
     this.timerInterval = setInterval(() => {
       this.timer.update((time) => {
