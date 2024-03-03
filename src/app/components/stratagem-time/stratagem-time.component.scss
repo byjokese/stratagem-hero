@@ -1,0 +1,13 @@
+.progressbar{
+  width: 100%;
+  height: 2rem;
+  background-color: #3d3e41;
+
+  .progressbar__progress{
+    height: 100%;
+    background-color: var(--hightlight);
+    &.danger{
+      background-color: var(--error);
+    }
+  }
+}

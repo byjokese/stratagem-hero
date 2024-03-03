@@ -1,0 +1,19 @@
+@if (gamePhase() == 'start') {
+  <app-game-start></app-game-start>
+} @else if (gamePhase() == 'game') {
+  <app-game></app-game>
+} @else if (gamePhase() == 'end') {
+  <app-game-over></app-game-over>
+} @else {
+  <app-game-start></app-game-start>
+}
+
+<div class="footer">
+  <span>Made with ❤️ by <a href="https://byjokese.com">Ivan Exposito, "By-Jokese"</a></span
+  ><br />
+  <span class="disclaimer"
+    >The "Stratagem Hero" logo/name and all the stratagem art used in this minigame are property of
+    <a href="https://www.arrowheadgamestudios.com/">Arrowhead Game Studios</a> and <a href="https://sonyinteractive.com/">Sony Interactive Entertainment</a>. This is
+    a non-profit project made by a fan for fans.</span
+  >
+</div>

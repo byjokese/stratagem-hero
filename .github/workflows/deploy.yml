@@ -1,0 +1,47 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+        aws-region: eu-west-1
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm install
+
+    #- name: Run tests
+    #  run: npm run test:headless
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy S3
+      if: success()
+      run: aws s3 sync ./dist/stratagem-hero/browser s3://stratagem-hero
+
+    - name: Invalidate CloudFront
+      uses: chetan/invalidate-cloudfront-action@v2
+      env:
+        DISTRIBUTION: ${{ secrets.AWS_DISTRIBUTION_ID }}
+        PATHS: "/"
+        AWS_REGION: "eu-west-1"
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_SECRET }}

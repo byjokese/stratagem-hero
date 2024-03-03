@@ -1,0 +1,48 @@
+.stratagem-queue {
+  width: 100%;
+  height: 250px;
+
+  .stratagem-queue-list {
+    padding: 0 0.3rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    .stratagem {
+      flex: 0 1 125px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      img {
+        mix-blend-mode: lighten;
+        max-height: 125px;
+        max-width: 125px;
+        width: 100%;
+        height: auto;
+        image-rendering: optimizeQuality;
+      }
+
+      &:first-child {
+        flex: 0 0 250px;
+        max-height: 250px;
+        width: 250px;
+        height: 250px;
+        border: 6px solid var(--hightlight);
+        border-bottom: 0;
+        img {
+          max-height: 100%;
+          max-width: 100%;
+        }
+      }
+
+      &:nth-child(n+7) {
+        display: none;
+      }
+    }
+  }
+}

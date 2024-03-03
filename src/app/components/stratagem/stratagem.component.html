@@ -1,0 +1,6 @@
+<div class="stratagem__name" [ngClass]="{ danger: warnTime() }">{{ stratagem()?.name }}</div>
+<div class="stratagem__keys">
+  @for (keyData of stratagem()?.keys; track $index) {
+    <div class="key {{ keyData.key }}" [ngClass]="{ completed: keyData.completed, error: wrongKey() }"></div>
+  }
+</div>

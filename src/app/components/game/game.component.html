@@ -1,0 +1,16 @@
+<div class="header"><h1>STRATAGEM HERO</h1></div>
+<div class="main">
+  <div class="col round">
+    <div class="round__tittle">Round</div>
+    <div class="round__number">{{ gameRound() }}</div>
+  </div>
+  <div class="col game">
+    <app-stratagem-queue></app-stratagem-queue>
+    <app-stratagem></app-stratagem>
+    <app-stratagem-time></app-stratagem-time>
+  </div>
+  <div class="col score">
+    <div class="score__number">{{ gameScore() }}</div>
+    <div class="score__tittle">Score</div>
+  </div>
+</div>
