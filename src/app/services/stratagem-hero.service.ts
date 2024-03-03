@@ -10,7 +10,7 @@ export type GamePhase = 'start' | 'game' | 'end';
   providedIn: 'root',
 })
 export class StratagemHeroService {
-  private readonly INITIAL_TIME_TO_COMPLETE = 1000000;
+  private readonly INITIAL_TIME_TO_COMPLETE = 20000;
   private readonly ACTION_DELAY = 500;
   private readonly BASE_NUMBER_OF_STRATAGEMS = 7;
 
@@ -118,6 +118,7 @@ export class StratagemHeroService {
     /* --------------------------- Stratagem Complete? -------------------------- */
     if (currentKeyQueueSize === 1 && keySuccess) {
       this.gameScoreSignal.update((score) => score + 10);
+      // this.timer.update((time) => time + 1000);
       this.nextStratagem();
     }
   }
