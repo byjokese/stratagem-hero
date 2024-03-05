@@ -1,0 +1,66 @@
+:host {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 75dvh;
+  border-top: 5px solid #ebebeb;
+  border-bottom: 5px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 5.5rem;
+    font-family: 'Monda-Bold';
+    text-shadow: 0 0 6px #ffffff8c;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/super_earth.webp');
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: saturation;
+    opacity: 0.05;
+  }
+  .start {
+    color: var(--hightlight);
+    font-size: 2.5rem;
+    text-shadow: 0 0 4px var(--hightlight);
+  }
+  .helpSection {
+    margin-top: 8rem;
+    position: absolute;
+    bottom: 0;
+    .help {
+      font-style: italic;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #ffffff8c;
+      text-shadow: 0 0 2px #ffffff8c;
+      span {
+        font-style: normal;
+        background-color: #ffffffc2;
+        color: var(--text);
+        display: inline-block;
+        min-width: 15px;
+        width: auto;
+        padding: 0 5px;
+        border-radius: 6px;
+        line-height: 22px;
+      }
+    }
+  }
+}

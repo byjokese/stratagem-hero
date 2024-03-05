@@ -1,0 +1,54 @@
+.stratagem__name {
+  width: 100%;
+  background-color: var(--hightlight);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Monda-Bold';
+  font-size: 1.8rem;
+  color: var(--text);
+  text-shadow: 0 0 1px var(--text);
+  border-radius: 3px;
+  &.danger {
+    background-color: var(--error);
+  }
+}
+
+.stratagem__keys {
+  margin: 2.5rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  .key {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    --webkit-mask: url('/assets/arrow.svg') no-repeat center;
+    mask: url('/assets/arrow.svg') no-repeat center;
+
+    &.up {
+      transform: rotate(-90deg);
+    }
+    &.down {
+      transform: rotate(90deg);
+    }
+    &.left {
+      transform: rotate(180deg);
+    }
+
+    &:first-child {
+      &.error {
+        background-color: var(--error);
+      }
+    }
+
+    &.completed {
+      background-color: var(--arrow-completed);
+      &.error {
+        background-color: var(--error);
+      }
+    }
+  }
+}

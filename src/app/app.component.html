@@ -1,13 +1,4 @@
-@if (gamePhase() == 'start') {
-  <app-game-start></app-game-start>
-} @else if (gamePhase() == 'game') {
-  <app-game></app-game>
-} @else if (gamePhase() == 'end') {
-  <app-game-over></app-game-over>
-} @else {
-  <app-game-start></app-game-start>
-}
-
+<router-outlet></router-outlet>
 <div class="footer">
   <span>Made with ❤️ by <a href="https://byjokese.com">Ivan Exposito, "By-Jokese"</a></span
   ><br />

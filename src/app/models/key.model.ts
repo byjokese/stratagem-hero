@@ -3,4 +3,4 @@ export interface KeyData {
   key: Key;
   completed: boolean;
 }
-export type Key = "up" | "right" | "down" | "left";
+export type Key = 'up' | 'right' | 'down' | 'left';

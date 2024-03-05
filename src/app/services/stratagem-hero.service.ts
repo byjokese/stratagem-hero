@@ -15,10 +15,11 @@ export class StratagemHeroService {
   private readonly BASE_NUMBER_OF_STRATAGEMS = 7;
 
   /* -------------------------------- Resources ------------------------------- */
-  private gameOverAudio = new Audio('assets/sounds/game-over.mp3');
-  private gameStartAudio = new Audio('assets/sounds/game-start.mp3');
-  private gameButtonAudio = new Audio('assets/sounds/key-press.mp3');
-  private gameButtonFailAudio = new Audio('assets/sounds/key-press-fail.mp3');
+  public gameOverAudio = new Audio('assets/sounds/game-over.mp3');
+  public gameStartAudio = new Audio('assets/sounds/game-start.mp3');
+  public gameButtonAudio = new Audio('assets/sounds/key-press.mp3');
+  public gameButtonFailAudio = new Audio('assets/sounds/key-press-fail.mp3');
+  public gameMenuBackAudio = new Audio('assets/sounds/menu-back.mp3');
   private timerInterval: NodeJS.Timeout | undefined;
 
   /* ------------------------------ Game Signals ------------------------------ */
@@ -52,6 +53,7 @@ export class StratagemHeroService {
     this.gameStartAudio.load();
     this.gameButtonAudio.load();
     this.gameButtonFailAudio.load();
+    this.gameMenuBackAudio.load();
   }
 
   /**
@@ -79,6 +81,7 @@ export class StratagemHeroService {
       this.gamePhaseSignals.set('start');
       this.gameScoreSignal.set(0);
       this.currentStratagemSignal.set(null);
+      clearInterval(this.timerInterval);
       this.timer.set(this.INITIAL_TIME_TO_COMPLETE);
     }, this.ACTION_DELAY);
   }

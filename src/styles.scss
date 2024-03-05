@@ -63,6 +63,11 @@ body {
       3px 100%;
     pointer-events: none;
   }
+
+  a {
+    color: var(--hightlight);
+    text-decoration: none;
+  }
 }
 
 :root {

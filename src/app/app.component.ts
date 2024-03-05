@@ -1,20 +1,29 @@
 import { ChangeDetectionStrategy, Component, HostListener, Signal, computed, effect, signal } from '@angular/core';
-import { GameStartComponent } from './components/game-start/game-start.component';
-import { GameComponent } from './components/game/game.component';
-import { GameOverComponent } from './components/game-over/game-over.component';
-import { StratagemKeys } from './utils/keys';
-import { GamePhase, StratagemHeroService } from './services/stratagem-hero.service';
+import { StratagemHeroService } from './services/stratagem-hero.service';
+import { MenuComponent } from './components/menu/menu.component';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [GameStartComponent, GameComponent, GameOverComponent],
+  imports: [RouterOutlet, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  gamePhase: Signal<GamePhase> = this.stratagemTrainerService.gamePhase;
+  constructor(
+    private stratagemTrainerService: StratagemHeroService,
+    private router: Router
+  ) {}
 
-  constructor(private stratagemTrainerService: StratagemHeroService) {}
+  @HostListener('document:keydown', ['$event'])
+  public onKeydown(event: KeyboardEvent) {
+    // on scape esc, navigate to main menu if not already there
+    if (event.key === 'Escape') {
+      this.stratagemTrainerService.gameMenuBackAudio.play();
+      this.stratagemTrainerService.resetGame();
+      this.router.navigate(['/']);
+    }
+  }
 }
