@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, HostListener, Signal, computed, eff
 import { StratagemHeroService } from './services/stratagem-hero.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { Router, RouterOutlet } from '@angular/router';
+import { NgxGoogleAnalyticsModule } from '@hakimio/ngx-google-analytics';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent],
+  imports: [RouterOutlet, MenuComponent, NgxGoogleAnalyticsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
