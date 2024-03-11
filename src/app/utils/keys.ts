@@ -1,8 +1,17 @@
-export const KeyboardKeys = {
-  left: ['ArrowLeft', 'a'],
-  right: ['ArrowRight', 'd'],
-  up: ['ArrowUp', 'w'],
-  down: ['ArrowDown', 's'],
+export interface IKeyboardKeys {
+  left: string[];
+  right: string[];
+  up: string[];
+  down: string[];
+  action: string[];
+}
+
+export const KeyboardKeys: IKeyboardKeys = {
+  left: ['ArrowLeft', 'KeyA'],
+  right: ['ArrowRight', 'KeyD'],
+  up: ['ArrowUp', 'KeyW'],
+  down: ['ArrowDown', 'KeyS'],
+  action: ['Enter', 'Space'],
 };
 
-export const StratagemKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'a', 'd', 'w', 's'];
+export const StratagemKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyA', 'KeyD', 'KeyW', 'KeyS'];

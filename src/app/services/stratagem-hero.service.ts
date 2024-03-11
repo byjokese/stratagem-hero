@@ -21,6 +21,7 @@ export class StratagemHeroService {
   public gameButtonFailAudio = new Audio('assets/sounds/key-press-fail.mp3');
   public gameMenuBackAudio = new Audio('assets/sounds/menu-back.mp3');
   private timerInterval: NodeJS.Timeout | undefined;
+  private stratagems: IStratagem[] = [];
 
   /* ------------------------------ Game Signals ------------------------------ */
   private stratagemQueueSignal: WritableSignal<Queue<IStratagem>> = signal(new Queue<IStratagem>(), {
@@ -54,6 +55,9 @@ export class StratagemHeroService {
     this.gameButtonAudio.load();
     this.gameButtonFailAudio.load();
     this.gameMenuBackAudio.load();
+
+    // Join all stratagems into a single array
+    this.stratagems = Object.values(Stratagems).reduce((acc, val) => acc.concat(val), []);
   }
 
   /**
@@ -94,7 +98,7 @@ export class StratagemHeroService {
     const currentKey = this.currentStratagemSignal()?.keyQueue.peek();
     if (!currentKey) return;
     const currentKeyQueueSize = this.currentStratagemSignal()?.keyQueue.size();
-    const keySuccess = KeyboardKeys[currentKey.key].includes(event.key);
+    const keySuccess = KeyboardKeys[currentKey.key].includes(event.code);
     if (keySuccess) {
       /* -------------------------- Press the correct key ------------------------- */
       this.gameButtonAudio.play();
@@ -129,9 +133,12 @@ export class StratagemHeroService {
   private newRound() {
     const queue = new Queue<IStratagem>();
     const numberOfStratagems = this.BASE_NUMBER_OF_STRATAGEMS + this.gameRoundSignal();
-    Array.from({ length: numberOfStratagems }, () => Math.floor(Math.random() * Stratagems.length)).forEach((index) => queue.enqueue(Stratagems[index]));
+    Array.from({ length: numberOfStratagems }, () => Math.floor(Math.random() * this.stratagems.length)).forEach((index) => queue.enqueue(this.stratagems[index]));
+    const stratagem = queue.dequeue() ?? null;
+    this.currentStratagemSignal.set(
+      new Stratagem(stratagem?.name ?? '', stratagem?.keys.map((key) => key.key) ?? [], stratagem?.image ?? '', stratagem?.category ?? '')
+    );
     this.stratagemQueueSignal.set(queue);
-    this.nextStratagem();
     this.resetTimer();
   }
 
@@ -147,7 +154,9 @@ export class StratagemHeroService {
     if (!this.stratagemQueueSignal().isEmpty()) {
       this.stratagemQueueSignal.update((queue) => {
         const nextStratagem = queue.dequeue() ?? null;
-        this.currentStratagemSignal.set(new Stratagem(nextStratagem?.name ?? '', nextStratagem?.keys.map((key) => key.key) ?? [], nextStratagem?.image ?? ''));
+        this.currentStratagemSignal.set(
+          new Stratagem(nextStratagem?.name ?? '', nextStratagem?.keys.map((key) => key.key) ?? [], nextStratagem?.image ?? '', nextStratagem?.category ?? '')
+        );
         return queue;
       });
     } else {

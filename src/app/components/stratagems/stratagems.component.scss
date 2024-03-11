@@ -1,0 +1,120 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 4rem;
+  font-family: 'Monda-Bold';
+  text-shadow: 0 0 6px #ffffff8c;
+  margin: 0;
+}
+
+.stratagems {
+  max-width: 80%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  padding: 8px;
+
+  .stratagem-group {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 4px;
+
+    &__tittle {
+      font-size: 1.5rem;
+      font-family: 'Monda-Bold';
+      text-shadow: 0 0 6px #ffffff8c;
+    }
+
+    &__stratagems {
+      .stratagem {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 2px;
+        padding: 8px;
+
+        &.active {
+          outline: 4px solid var(--highlight);
+        }
+
+        .stratagem-image {
+          width: 70px;
+          height: 70px;
+        }
+
+        .stratagem-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          width: 100%;
+
+          .stratagem-sumary {
+            padding: 8px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            text-shadow: 0 0 6px #ffffff8c;
+            &__name {
+              font-size: 1.2rem;
+              font-family: 'Monda-Bold';
+            }
+
+            &__category {
+              font-size: 1rem;
+              font-family: 'Monda-Regular';
+              margin: 0 8px;
+            }
+          }
+
+          .stratagem-keys {
+            display: flex;
+            flex-direction: row;
+            margin: 0 8px;
+            .key {
+              width: 30px;
+              height: 30px;
+              background-color: white;
+              --webkit-mask: url('/assets/arrow.svg') no-repeat center;
+              mask: url('/assets/arrow.svg') no-repeat center;
+
+              &.up {
+                transform: rotate(-90deg);
+              }
+              &.down {
+                transform: rotate(90deg);
+              }
+              &.left {
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.stratagem-page {
+  text-shadow: 0 0 6px #ffffff8c;
+  margin-bottom: 6px;
+}

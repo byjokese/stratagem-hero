@@ -3,6 +3,7 @@ import { GameContainerComponent } from './components/arcade/game-container/game-
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CreditsComponent } from './components/credits/credits.component';
+import { StratagemsComponent } from './components/stratagems/stratagems.component';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,7 @@ export const routes: Routes = [
   },
   {
     path: 'stratagems',
-    component: MenuComponent,
+    component: StratagemsComponent,
   },
   {
     path: 'credits',

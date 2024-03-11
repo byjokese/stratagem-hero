@@ -1,0 +1,27 @@
+<h1>STRATAGEMS</h1>
+<div class="stratagems">
+  @for (group of stratagemNames; track $index) {
+    <div class="stratagem-group" #stratagemGroup>
+      <h3 class="stratagem-group__tittle">{{ group }}</h3>
+      <div class="stratagem-group__stratagems">
+        @for (stratagem of stratagems[group]; track $index) {
+          <div class="stratagem" #stratagem>
+            <img class="stratagem-image" src="/assets/stratagems/{{ stratagem.image }}" alt="{{ stratagem.name }}" />
+            <div class="stratagem-info">
+              <div class="stratagem-sumary">
+                <span class="stratagem-sumary__name">{{ stratagem.name }}</span>
+                <span class="stratagem-sumary__category">{{ stratagem.category }}</span>
+              </div>
+              <div class="stratagem-keys">
+                @for (key of stratagem.keys; track key.guid) {
+                  <div class="key {{ key.key }}"></div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
+<div class="stratagem-page">Page {{ currentPage() }}/{{ totalPages() }}</div>

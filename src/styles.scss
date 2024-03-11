@@ -65,14 +65,14 @@ body {
   }
 
   a {
-    color: var(--hightlight);
+    color: var(--highlight);
     text-decoration: none;
   }
 }
 
 :root {
   --text: #1d1d1d;
-  --hightlight: #ffff7d;
+  --highlight: #ffff7d;
 
   --arrow-completed: #f7f7af;
   --error: #dd6868;

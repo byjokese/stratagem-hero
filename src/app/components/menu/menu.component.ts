@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, computed, contentChild, contentChildren, viewChild, viewChildren } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { StratagemHeroService } from '../../services/stratagem-hero.service';
+import { IKeyboardKeys, KeyboardKeys } from '../../utils/keys';
 
 @Component({
   selector: 'app-menu',
@@ -10,10 +11,6 @@ import { StratagemHeroService } from '../../services/stratagem-hero.service';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements AfterViewInit {
-  private readonly DOWN_KEYS = ['ArrowDown', 'KeyS'];
-  private readonly UP_KEYS = ['ArrowUp', 'KeyW'];
-  private readonly ACTION_KEYS = ['Enter', 'Space'];
-
   menuItems = viewChildren<ElementRef>('menuItem');
   menuItemsNotDisabled = computed(() => this.menuItems().filter((item: ElementRef) => !item.nativeElement.classList.contains('disabled')));
   constructor(
@@ -27,12 +24,13 @@ export class MenuComponent implements AfterViewInit {
 
   @HostListener('document:keydown', ['$event'])
   public onKeydown(event: KeyboardEvent) {
-    if (this.DOWN_KEYS.includes(event.code) || this.UP_KEYS.includes(event.code)) {
+    if (KeyboardKeys.up.includes(event.code) || KeyboardKeys.down.includes(event.code)) {
       this.navigateMenu(event);
-    } else if (this.ACTION_KEYS.includes(event.code)) {
+    } else if (KeyboardKeys.action.includes(event.code)) {
       this.selectMenuItem();
     }
   }
+
   private selectMenuItem() {
     const activeMenuItem = this.menuItemsNotDisabled().find((item: ElementRef) => item.nativeElement.classList.contains('active'));
     if (activeMenuItem) {
@@ -50,7 +48,7 @@ export class MenuComponent implements AfterViewInit {
     this.menuItemsNotDisabled().forEach((item: ElementRef) => {
       item.nativeElement.classList.remove('active');
     });
-    const nextActiveIndex = this.DOWN_KEYS.includes(event.code) ? currentActiveIndex + 1 : currentActiveIndex - 1;
+    const nextActiveIndex = KeyboardKeys.down.includes(event.code) ? currentActiveIndex + 1 : currentActiveIndex - 1;
     if (nextActiveIndex < 0) {
       this.menuItemsNotDisabled().at(-1)?.nativeElement.classList.add('active');
     } else if (nextActiveIndex >= this.menuItemsNotDisabled().length) {

@@ -16,7 +16,7 @@ export class GameStartComponent {
 
   @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent) {
-    if (this.gamePhase() === 'start' && (StratagemKeys.includes(event.key) || event.code === 'Enter' || event.code === 'Space')) {
+    if (this.gamePhase() === 'start' && (StratagemKeys.includes(event.code) || event.code === 'Enter' || event.code === 'Space')) {
       this.stratagemTrainerService.startGame();
     }
   }

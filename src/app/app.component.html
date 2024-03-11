@@ -1,10 +1,35 @@
-<router-outlet></router-outlet>
-<div class="footer">
-  <span>Made with ❤️ by <a href="https://byjokese.com">Ivan Exposito, "By-Jokese"</a></span
-  ><br />
-  <span class="disclaimer"
-    >The "Stratagem Hero" logo/name and all the stratagem art used in this minigame are property of
-    <a href="https://www.arrowheadgamestudios.com/">Arrowhead Game Studios</a> and <a href="https://sonyinteractive.com/">Sony Interactive Entertainment</a>. This is
-    a non-profit project made by a fan for fans.</span
-  >
+<div class="main">
+  <router-outlet></router-outlet>
 </div>
+<div class="bottom">
+  <div class="helpSection">
+    <ng-container *ngTemplateOutlet="getHelpTemplate()"></ng-container>
+  </div>
+  <div class="footer">
+    <span>Made with ❤️ by <a href="https://byjokese.com">Ivan Exposito, "By-Jokese"</a></span
+    ><br />
+    <span class="disclaimer"
+      >The "Stratagem Hero" logo/name and all the stratagem art used in this minigame are property of
+      <a href="https://www.arrowheadgamestudios.com/">Arrowhead Game Studios</a> and <a href="https://sonyinteractive.com/">Sony Interactive Entertainment</a>. This
+      is a non-profit project made by a fan for fans.</span
+    >
+  </div>
+</div>
+
+<ng-template #menuHelp>
+  <p class="help">Use <span>W</span>, <span>S</span> or <span>↑</span>, <span>↓</span> to navigate on the menu.</p>
+  <p class="help">Press <span>Enter</span>, <span>Space</span> to select an option.</p>
+</ng-template>
+
+<ng-template #creditsHelp>
+  <p class="help">Press <span>Esc</span> to go back to main menu.</p>
+</ng-template>
+
+<ng-template #gameHelp>
+  <p class="help">Press <span>Esc</span> to exit the game at any time.</p>
+</ng-template>
+
+<ng-template #stratagemsHelp>
+  <p class="help">Use <span>W</span>, <span>S</span>, <span>A</span>, <span>D</span> or</p>
+  <p class="help"><span>↑</span>, <span>↓</span>, <span>←</span>, <span>→</span> to navigate on the menu.</p>
+</ng-template>

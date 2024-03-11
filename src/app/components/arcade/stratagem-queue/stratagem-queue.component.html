@@ -1,7 +1,7 @@
 <div class="stratagem-queue">
   <div class="stratagem-queue-list">
     <div class="stratagem">
-      <img class="stratagem-image" src="/assets/stratagems/{{ currentStratagem()?.image }}" alt="{{ currentStratagem()?.name }}" />
+      <img class="stratagem-image" src="/assets/stratagems/{{ currentStratagem()?.image }}" alt="{{ currentStratagem()?.name }}" width="250px" height="250px" />
     </div>
     @for (stratagem of queue().toArray(); track stratagem.name) {
       <div class="stratagem">

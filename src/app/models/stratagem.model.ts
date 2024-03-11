@@ -4,26 +4,31 @@ import { Key, KeyData } from './key.model';
 export type StratagemType = IStratagem | null;
 
 export interface IStratagem {
+  guid: string;
   name: string;
   keys: KeyData[];
   keyQueue: Queue<KeyData>;
   image: string;
+  category: string;
 
   reset(): void;
 }
 
 export class Stratagem implements IStratagem {
+  guid: string = crypto.randomUUID();
   name: string = '';
   keys: KeyData[] = [];
-  image: string = '';
   keyQueue: Queue<KeyData>;
+  image: string = '';
+  category: string = '';
 
-  constructor(name: string, keys: Key[], image: string) {
+  constructor(name: string, keys: Key[], image: string, category: string) {
     this.name = name;
     this.keys = keys.map((key) => ({ guid: crypto.randomUUID(), key, completed: false }));
     this.keyQueue = new Queue<KeyData>(keys.length);
     this.keys.forEach((keydata) => this.keyQueue.enqueue(keydata));
     this.image = image;
+    this.category = category;
   }
 
   reset(): void {
@@ -37,7 +42,7 @@ export const isStratagemEqual = (a: IStratagem | null, b: IStratagem | null) => 
   if (a === null && b === null) {
     return true;
   }
-  if (a?.keys.length !== b?.keys.length || a?.keyQueue.size !== b?.keyQueue.size || a?.name !== b?.name || a?.image !== b?.image) {
+  if (a?.guid !== b?.guid) {
     return false;
   }
   return true;
