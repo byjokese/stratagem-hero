@@ -62,7 +62,7 @@ export const Stratagems: Record<string, IStratagem[]> = {
     new Stratagem('EXO-45 Patriot Exosuit', ['left', 'down', 'right', 'up', 'left', 'down', 'down'], 'PatriotIcon.svg', 'Defensive'),
   ],
   'Mission Stratagems': [
-    new Stratagem('Resupply', ['down', 'down', 'up', 'up'], 'ResupplyIcon.svg', 'Mission'),
+    new Stratagem('Resupply', ['down', 'down', 'up', 'right'], 'ResupplyIcon.svg', 'Mission'),
     new Stratagem('Reinforce', ['up', 'down', 'right', 'left', 'up'], 'ReinforceIcon.svg', 'Mission'),
     new Stratagem('SOS Beacon', ['up', 'down', 'right', 'up'], 'SOSIcon.svg', 'Mission'),
     new Stratagem('Upload Data', ['down', 'down', 'up', 'up', 'up'], 'UploadDataIcon.svg', 'Mission'),
