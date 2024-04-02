@@ -50,6 +50,7 @@ export const Stratagems: Record<string, IStratagem[]> = {
     new Stratagem('AX/LAS-5 "Guard Dog" Rover', ['down', 'up', 'left', 'up', 'right', 'right'], 'AX-LAS-5icon.svg', 'Supply'),
     new Stratagem('SH-20 Ballistic Shield Backpack', ['down', 'left', 'down', 'down', 'up', 'left'], 'SH-20icon.svg', 'Supply'),
     new Stratagem('ARC-3 Arc Thrower', ['down', 'right', 'down', 'up', 'left', 'left'], 'ARC-3icon.svg', 'Supply'),
+    new Stratagem('LAS-99 Quasar Cannon', ['down', 'down', 'up', 'left', 'right'], 'LAS-99icon.svg', 'Supply'),
     new Stratagem('SH-32 Shield Generator Pack', ['down', 'up', 'left', 'right', 'left', 'right'], 'SH-32icon.svg', 'Supply'),
   ],
   'Robotic Workshop': [
